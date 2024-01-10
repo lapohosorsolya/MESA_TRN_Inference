@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
         # scale back to original
         x_cutoff = (len(var_df)-1) * max_x
-        y_cutoff = var_df.score[var_df.index == round(x_cutoff)].values[0]
+        y_cutoff = var_df.var[var_df.index == round(x_cutoff)].values[0]
 
         # save TF list
         selected_tfs = var_df.tf.to_list()[:x_cutoff+1]
@@ -72,8 +72,8 @@ if __name__ == "__main__":
         # save plot
         fig, ax = plt.subplots(figsize = (6, 4))
         ax.plot(kl.x, kl.y, color = 'k')
-        ax.vlines(x_cutoff, 0, edge_df.score.max(), linestyles = "--", colors = 'r')
-        ax.hlines(y_cutoff, 0, len(edge_df), linestyles = "--", colors = 'r')
+        ax.vlines(x_cutoff, 0, var_df.var.max(), linestyles = "--", colors = 'r')
+        ax.hlines(y_cutoff, 0, len(var_df), linestyles = "--", colors = 'r')
         ax.set_ylabel('variance')
         ax.set_xlabel('TF by rank')
         fig.savefig(proj_dir + '/ranked_tf_variance_with_cutoff.pdf', bbox_inches = 'tight')
