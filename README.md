@@ -31,7 +31,7 @@ First, enter the specific directory where you want to store this repository:
 
 Then, clone this repository to your server or local machine using the following command:
 
-    git clone https://github.com/lapohosorsolya/MESA-TRN-Inference
+    git clone https://github.com/lapohosorsolya/MESA_TRN_Inference
 
 ## Environment
 
@@ -65,7 +65,7 @@ Then, please place a copy of the DEG list file into this directory:
 
 Before running the following scripts, make sure you are in the right directory.
 
-    cd <path to repo storage dir>/MESA-TRN-Inference
+    cd <path to repo storage dir>/MESA_TRN_Inference
 
 ### 1. TF Selection
 
