@@ -84,7 +84,7 @@ if __name__ == "__main__":
 
         fig, ax = plt.subplots(figsize = (6, 4))
         ax.plot(kl.x[:x_max_lim], np.log1p(kl.y[:x_max_lim]), color = 'k')
-        ax.vlines(x_cutoff, 0, var_df.variance.max(), linestyles = "--", colors = 'r')
+        ax.vlines(x_cutoff, 0, np.log1p(var_df.variance.max()), linestyles = "--", colors = 'r')
         ax.hlines(y_cutoff, 0, x_max_lim, linestyles = "--", colors = 'r')
         ax.set_ylabel('log1p(variance)')
         ax.set_xlabel('TF by rank')
