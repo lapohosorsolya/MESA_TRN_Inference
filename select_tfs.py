@@ -62,8 +62,8 @@ if __name__ == "__main__":
         max_x = kl.x_difference[max_i]
 
         # scale back to original
-        x_cutoff = (len(var_df)-1) * max_x
-        y_cutoff = var_df.variance.values[round(x_cutoff)]
+        x_cutoff = round((len(var_df)-1) * max_x)
+        y_cutoff = var_df.variance.values[x_cutoff]
 
         # save TF list
         selected_tfs = var_df.tf.to_list()[:x_cutoff+1]
