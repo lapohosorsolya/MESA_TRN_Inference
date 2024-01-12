@@ -69,14 +69,26 @@ if __name__ == "__main__":
         selected_tfs = var_df.tf.to_list()[:x_cutoff+1]
         np.savetxt(proj_dir + '/selected_tfs.txt', selected_tfs, fmt = '%s')
 
-        # save plot
+        # save plots
+        x_max_lim = x_cutoff + 1
+        if 2 * x_cutoff < len(kl.x):
+            x_max_lim = 2 * x_cutoff
+
         fig, ax = plt.subplots(figsize = (6, 4))
-        ax.plot(kl.x, kl.y, color = 'k')
+        ax.plot(kl.x[:x_max_lim], kl.y[:x_max_lim], color = 'k')
         ax.vlines(x_cutoff, 0, var_df.variance.max(), linestyles = "--", colors = 'r')
-        ax.hlines(y_cutoff, 0, len(var_df), linestyles = "--", colors = 'r')
+        ax.hlines(y_cutoff, 0, x_max_lim, linestyles = "--", colors = 'r')
         ax.set_ylabel('variance')
         ax.set_xlabel('TF by rank')
         fig.savefig(proj_dir + '/ranked_tf_variance_with_cutoff.pdf', bbox_inches = 'tight')
+
+        fig, ax = plt.subplots(figsize = (6, 4))
+        ax.plot(kl.x[:x_max_lim], np.log1p(kl.y[:x_max_lim]), color = 'k')
+        ax.vlines(x_cutoff, 0, var_df.variance.max(), linestyles = "--", colors = 'r')
+        ax.hlines(y_cutoff, 0, x_max_lim, linestyles = "--", colors = 'r')
+        ax.set_ylabel('log1p(variance)')
+        ax.set_xlabel('TF by rank')
+        fig.savefig(proj_dir + '/ranked_tf_variance_with_cutoff_log.pdf', bbox_inches = 'tight')
 
     else:
 
